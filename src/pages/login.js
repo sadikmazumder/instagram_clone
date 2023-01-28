@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FirebaseContext from "../context/firebase";
+import * as ROUTES from "../constants/routes";
 
 export default function Login() {
   const history = useNavigate();
@@ -13,8 +14,17 @@ export default function Login() {
   const [error, setError] = useState("");
   const isInvalid = password === "" || emailAddress === "";
 
-  const handleLogin = () => {
-    //event.preventdefault();
+  const handleLogin = async (event) => {
+    event.preventdefault();
+
+    try {
+      await firebase.auth().signInWithEmailAndPassword(emailAddress, password);
+      history.push(ROUTES.DASHBOARD);
+    } catch (error) {
+      setEmailAddress("");
+      setPassword("");
+      setError(error.message);
+    }
   };
 
   useEffect(() => {
@@ -31,7 +41,7 @@ export default function Login() {
       </div>
 
       <div className="flex flex-col w-2/5">
-        <div className="flex flex-col items-center bg-white p-4 border border-gray-primary mb-4">
+        <div className="flex flex-col items-center bg-white p-4 border border-gray-primary mb-4 rounded">
           <h1 className="flex justify-center w-full">
             <img
               src="/images/logo.png"
@@ -70,11 +80,11 @@ export default function Login() {
           </form>
         </div>
 
-        <div className="flex justify-center items-center flex-col w-full bg-white p-4 border border-gray-primary">
+        <div className="flex justify-center items-center flex-col w-full bg-white p-4 rounded border border-gray-primary">
           <p className="text-sm">
             {`Don't have an account?`}
             {` `}
-            <Link to="/signup" className="font-bold text-blue-medium ">
+            <Link to={ROUTES.SIGN_UP} className="font-bold text-blue-medium ">
               Sign Up
             </Link>
           </p>
