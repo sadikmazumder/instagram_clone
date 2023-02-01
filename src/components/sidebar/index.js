@@ -5,14 +5,17 @@ import Suggestions from "./suggestions";
 
 export default function Sidebar() {
   const {
-    user: { fullName, username, userId },
+    user: { fullName, username, userId, following },
   } = useUser();
 
-  //console.log("fullName, username, userId", fullName, username, userId);
+  console.log("fullName, username, userId", fullName, username, userId);
   return (
     <div className="p-4">
-      <User />
-      <Suggestion />
+      <User username={username} fullName={fullName} />
+      <Suggestions userId={userId} following={following} />
     </div>
   );
 }
+
+//export default memo(Sidebar);
+// Sidebar.whyDidYouRender = true;

@@ -15,11 +15,13 @@ export default function Login() {
   const isInvalid = password === "" || emailAddress === "";
 
   const handleLogin = async (event) => {
-    event.preventdefault();
+    event.preventDefault();
 
     try {
-      await firebase.auth().signInWithEmailAndPassword(emailAddress, password);
-      history.push(ROUTES.DASHBOARD);
+      const response = await firebase
+        .auth()
+        .signInWithEmailAndPassword(emailAddress, password);
+      history(ROUTES.DASHBOARD);
     } catch (error) {
       setEmailAddress("");
       setPassword("");

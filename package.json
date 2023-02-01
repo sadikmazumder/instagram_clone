@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "date-fns": "^2.29.3",
     "firebase": "^9.15.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
@@ -15,8 +16,7 @@
     "react-loading-skeleton": "^3.1.0",
     "react-router-dom": "^6.7.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4",
-    "date-fns": "^2.29.3"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "build:css": "postcss src/style/tailwind.css -o src/styles/app.css",
@@ -48,6 +48,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.1",
+    "@welldone-software/why-did-you-render": "^7.0.1",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.32.0",
     "eslint-plugin-react": "^7.32.0",

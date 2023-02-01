@@ -8,7 +8,7 @@ export default function SignUp() {
   const history = useNavigate();
   const { firebase } = useContext(FirebaseContext);
 
-  const [userName, setUserName] = useState("");
+  const [username, setUserName] = useState("");
   const [fullName, setFullName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,7 +19,7 @@ export default function SignUp() {
 
   const handleSignup = async (event) => {
     event.preventDefault();
-    const userNameExists = await doesUserNameExits(userName);
+    const userNameExists = await doesUserNameExits(username);
     console.log(userNameExists);
     if (!userNameExists.length) {
       try {
@@ -31,14 +31,14 @@ export default function SignUp() {
         // -> emailAddress & password & username (display)
 
         await createdUserResult.user.updateProfile({
-          displayName: userName,
+          displayName: username,
         });
 
         console.log(createdUserResult);
         // firebase user collection (create a document)
         await firebase.firestore().collection("users").add({
           userId: createdUserResult.user.uid,
-          userName: userName.toLocaleLowerCase(),
+          username: username.toLocaleLowerCase(),
           fullName,
           emailAddress: emailAddress.toLocaleLowerCase(),
           following: [],
@@ -92,7 +92,7 @@ export default function SignUp() {
               placeholder="Username"
               className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
               onChange={({ target }) => setUserName(target.value)}
-              value={userName}
+              value={username}
             />
 
             <input

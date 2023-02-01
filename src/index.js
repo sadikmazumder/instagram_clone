@@ -5,7 +5,14 @@
 // import FirebaseContext from "./context/firebase";
 // import { firebase, FieldValue } from "./lib/firebase";
 
+import "./wdyr";
 import React from "react";
+
+import whyDidYouRender from "@welldone-software/why-did-you-render";
+whyDidYouRender(React, {
+  trackAllPureComponents: true,
+});
+
 //import ReactDOM from "react-dom";
 import ReactDOM from "react-dom/client";
 
@@ -41,7 +48,7 @@ root.render(
 
 // ReactDOM.render(
 //   <FirebaseContext.Provider value={{ Firebase, FieldValue }}>
-//     <App /> 
+//     <App />
 //   </FirebaseContext.Provider>,
 //   document.getElementById("root")
 // );
